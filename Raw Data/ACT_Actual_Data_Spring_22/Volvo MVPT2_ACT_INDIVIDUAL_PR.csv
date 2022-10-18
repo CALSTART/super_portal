@@ -1,0 +1,61 @@
+# This is a template for the Advanced Clean Trucks Manufacturer Produced and Delivered for Sale Reports. Make sure your file is saved in CSV format before uploading it to the screen.,,,,,,,,,,
+#,,,,,,,,,,
+# Items in the CSV file must be separated by a comma. Non-USA users should check their files to be certain that some other character was not used by their computer as the item separator.,,,,,,,,,,
+"# In some cases, the user may wish to change the default list separator character in Windows. (Start | Settings | Control Panel | Regional and Language Options | Customize | List Separator)",,,,,,,,,,
+"# Although the fields titled ""Allowed Values:"" show both codes and their descriptions, the actual input file should only use the appropriate codes.",,,,,,,,,,
+# Any row that starts with a '#' in the first column will be ignored,,,,,,,,,,
+# See examples below.,,,,,,,,,,
+#VIN,Vehicle Fuel Type,Drivetrain Type,ZEP Certified?,Vehicle Model Year,Vehicle Classification,NZEV - All Electric Miles,Credit for ACC (Class 2b-3),Sold to Ultimate Purchaser?,State of Sale,Low Volume Exception?
+#PV-32 same as EPA Sheet,PV-37 (same as EPA sheet),,,,,,,,,
+#**Conditional**,**Required**,**Required**,**Required**,**Required**,**Required**,**Conditional**,**Required**,**Required**,**Required**,**Required**
+#,Allowed Values:,Allowed Values:,Allowed Values:,,Allowed Values:,,Allowed Values:,Allowed Values:,Allowed Values:,Allowed Values:
+#,CNG = Compressed Natural Gas,EV = Electric Vehicle,Y = Yes,,C2b3 = Class 2b-3,,Y = Yes,Y = Yes,CA,Y = Yes
+#,D = Diesel,FC = Fuel Cell-Powered Vehicle,N = No,,C45 = Class 4-5,,N = No,N = No,MA,N = No
+#,"E = Ethanol, greater than 85%",NZEV = Near Zero Emission Vehicle,,,C67 = Class 6-7,,,,NJ,
+#,EL = Electricity,NA = Not Applicable,,,C8S = Class 8 including Yard Tractors,,,,NY,
+#,"G = Gasoline, including blends up to E85",,,,C78T = Class 7-8 Tractors,,,,OR,
+#,H = Hydrogen,,,,,,,,WA,
+#,LNG = Liquefied Natural Gas,,,,,,,,,
+#,LPG = Liquefied Petroleum Gas,,,,,,,,,
+#,M = Methanol,,,,,,,,,
+#,,,,,,,,,,
+#,,,,,,,,,,
+#,,,,,,,,,,
+#,,,,,,,,,,
+#,,,,,,,,,,
+#Example:,,,,,,Example:,,,,
+#123ABC456XYZ78900,D,EV,Y  ,,C78T   ,,N ,Y   ,CA,N
+#,EL  ,NZEV  ,N  ,,,75,,,,
+# Enter data below,,,,,,,,,,
+#VIN,Vehicle Fuel Type,Drivetrain Type,ZEP Certified?,Vehicle Model Year,Vehicle Classification,NZEV - All Electric Miles,Credit for ACC (Class 2b-3),Sold to Ultimate Purchaser?,State of Sale,Low Volume Exception?
+4V4WB9KN9NN611452,EL,EV,N,2021,C78T,,N,N ,CA,N
+4V4W39KN5NN608576,EL,EV,N,2021,C78T,,N,N ,CA,N
+4V4WB9KN1NN608514,EL,EV,N,2021,C78T,,N,N ,CA,N
+4V4WB9KN5NN608516,EL,EV,N,2021,C78T,,N,N ,CA,N
+4V4WB9KN0NN608519,EL,EV,N,2021,C78T,,N,N ,CA,N
+4V4WB9KN2NN609669,EL,EV,N,2021,C78T,,N,Y,CA,N
+4V4WB9KN9NN609670,EL,EV,N,2021,C78T,,N,Y,CA,N
+4V4WB9KN6NN608511,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN9NN608518,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN7NN608520,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN9NN608521,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN0NN608522,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN8NN608509,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN4NN608510,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KNXNN608513,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN3NN608515,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN4NN608507,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN6NN608508,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN8NN608512,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN7NN608517,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN1NN607556,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN8NN607554,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KNXNN607555,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN6NN607553,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN3NN603508,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4WB9KN0NN601022,EL,EV,N,2021,C78T,,N,N,CA,N
+4V4W39KNXNN605012,EL,EV,N,2021,C78T,,N,Y,NY,N
+4V4W39KN8NN605011,EL,EV,N,2021,C78T,,N,Y,NY,N
+4V4W39KN6NN605010,EL,EV,N,2021,C78T,,N,Y,NY,N
+4V4W39KNXNN605009,EL,EV,N,2021,C78T,,N,Y,NY,N
+4V4W19KN5NN601021,EL,EV,N,2021,C78T,,N,N,OR,N

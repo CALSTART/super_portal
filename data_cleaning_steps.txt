@@ -1,0 +1,4 @@
+Data Cleaning Steps
+HVIP Data:
+1. Remove Date Delivered that are NA or null
+2. Remove missing VINs

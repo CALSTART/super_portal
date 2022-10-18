@@ -1,0 +1,68 @@
+project_id,project_name,grantee,grantee_location,project_partners,grant_execution,expected_project_start,actual_project_start,incentives_received,match_funding_received,carb_project_funding
+G17-ZNZE-09-2,Zero and Near Zero-Emission Freight Facilities Project,San Joaquin Valley Air Pollution Control District,"Fresno, CA","San Joaquin Valley Air Pollution Control District, Grantee;
+BNSF Railway, Technology Demonstrator;
+Wabtec, Technology Provider;
+BYD, Technology Provider;
+Café Coop, Community Based Organization;
+ITS ConGlobal, Technology Demonstrator;
+Southwest Research Institute, Data Collection & Analysis;
+Charge Point, EVSE Provider;
+Electro Construction, Electrical Contractor ;
+Gladstein, Neandross & Associates, ;
+Pacific Gas & Electric, Utility;
+Southern California Edison, Utility;
+T&S Engineering, ;
+Freight Railroad Administration, ;
+TKDA, ;
+Environmental Protection Agency, ;",2019-05-19,2019-01-02,2019-01-02,0,22620673,
+G14-LCTI-10,City of Porterville Transit Electrification,City of Porterville,"Porterville, CA","Porterville Transit Agency, Transit Agency; GreenPower Motor Company, Inc., Vehicle Technology Provider; BTC Power, Charging Station Installer and Support; San Joaquin Valley Air Pollution Control District, Grant Administrator; ViriCiti, Data Logger Provider",2016-12-05,2020-06-01,2019-12-01,,7437280,16953702
+G14-LCTI-12,San Joaquin Valley Transit Electrification Project,San Joaquin Valley Air Pollution Control District,"Fresno, CA","FCRTA, deployment of ZEVs; San Joaquin RTD, Fleet; City of Modesto Transit, Fleet; City of Visalia Transit, Fleet; Ricardo Inc, Data Collection and Analysis; Proterra Inc, Vehicle Technology Provider",,2016-11-14,2016-08-01,,7432516,13414215
+G16-ZBUS-02,Sacramento Regional Zero-Emission School Bus Delployment Project,Sacramento Metropolitan Air Quality Management District,"Sacramento, CA","CARB, Granter; FPBS, Vehicle Technology Provider; MOTIV, Vehicle Technology Provider; EV Connect, Charger Installation and Manamgent; Ricardo Inc, Data Collection and Analysis; ChargePoint, Data Gathering and Reporting; Elizabeth Cooper LLC, Charger Advice; California Strategies & Advocacy, Grant Application and Writting; Sacramento School Districts, Fleet; ",2017-02-27,2017-02-27,2017-02-27,7696955,6788514,
+G16-ZNZE-02,Volvo Low Impact Green Heavy Transportation Solutions,South Coast Air Quality Management District,Southern California,"VOLV, Technology Provider; DHE, Fleet; NFII, Fleet; TEC, Maintenance; GNA, Project Management and Marketing; GRNL, Software; UCRS, Data collection and validation; CALS, Data collection and validation; SCED, Utilities",,2019-02-15,2019-02-15,795000,46367867,44839686
+G16-DEMO-02,Fast Track Fuel Cell Truck Project,Gas Technology Institute,"Los Angeles, CA","CARB, Granter; GTI, Grantee; Tranpower, ;TTSI, Fleet; Daylight Transport, Fleet; CSE, Community Outreach; Frontier Energy, Data Collection; ",2018-04-30,,2018-04-16,,1694216,5081478
+G17-ZNZE-01,Sustainable Terminals Accelerating Regional Transformation,Port of Long Beach,Port of LB; Port of Oak; Port of Stockton; ,"Meritor/TransPower, Technology provider; SSA Marine Inc, Fleet; SCE, Administrative; Moffat & Nichol, Engineering and Consulation; PG & E, Utilities; STE Oakland, Fleet; ViriCiti, Data loggers; Peterbilt/PACCAR, Technology Providers;  STE Long Beach, Fleet; BTC Power, Technology Provider; EV Connect, EVSE; Port of Oakland, Fleet; Port of Stockton, Fleet; XL Lifts, Fleet; Papé, Maintenance; CARB, Granter; Matson, Fleet; UC Riverside, Data Collection; Momentum, Fleet; Northwest Tug Leasing, LLC, Fleet; Crowley Maritime, Fleet; NordCo, Technology Provider; Cavotec, Engineering Services; ",,2019-01-23,2019-01-23,,52998742,50000000
+G14-LCTI-09,Zero-Emission Drayage Truck Demonstration Project,South Coast Air Quality Management District,"Diamond Bar, CA","Total Transportation Service Inc., Fleet;
+GSC Logistics, Fleet; 
+Gen Logistics, Fleet;
+Sea-Logix, Fleet;
+Harris Ranch Beef Company, Fleet;
+Werner Enterprises, Fleet;
+Oak Harbor, Fleet;
+Daylight, Fleet;
+Golden State Logistics, Fleet;
+Quick Pick Express, Fleet;
+Pasha Distribution, Fleet;
+Anheuser-Busch, Fleet;
+NFI, Fleet;
+Estes Express, Fleet;
+LADWP, Fleet;
+SCE, Fleet;
+PepsiCo, Fleet;
+Biagi, Fleet;
+IBT, Data Logger Provider;
+South Coast Air Quality Management District, Project Administrator;
+BYD, Vehicle Technology Provider;
+TransPower, Vehicle Technology Provider;
+Kenworth, Vehicle Technology Provider;
+Volvo, Vehicle Technology Provider",2021-04-29,2016-08-15,2016-08-15,15476069,23658500,
+G16-ZTRK-04,USPS Zero-Emission Delivery Truck Pilot Commercial Deployment Project,San Joaquin Valley Air Pollution Control District,"Fresno, CA","Cummins, Vehicle Technology Provider; MOTIV, Vehicle Technology Provider; CALSTART, EVSE Construction Manager; Black and Veatch, Solar and Energy Storage Analysis; United States Postal Service (USPS), Fleet; San Joaquin Valley Air Pollution Control District, Administrator; ViriCiti, Data Loggers; Clipper Creek, EVSE Provider; FleetCarma, Data Loggers; Morgan Olson, Vehicle Manufacturer; Albright Electric, EVSE Installation; EVolution Electric Vehicle Systems; EVSE Monitoring; First Priority Greenfleet, Vehicle Maintenance; Interstate Engineering Inc., CAD Engineering",2017-07-03,2016-08-01,2017-10-01,,2222903,4555670
+G14-LCTI-11,Sunline Fuel Cell Buses and Hydrogen Onsite Generation Refueling Station Pilot Commercial Deployment Project,Sunline Transit Agency,"Coachella Valley, CA","Sunline Transit Agency, Transit Agency; 
+New Flyer Industries, Vehicle Technology Provider;
+Nel Hydrogen Inc., Hydrogen Station Provider;
+Zen and the Art of Clean Energy Solutions Inc., Project Manager;
+Hydrogenics, Hydrogen Station Technology Provider;
+Proton, Hydrogen Station Technology Provider;
+EPC, Engineering and Construction;
+Ricardo PLC, Engineering Services;
+FleetNet, Data Collection;
+Broadlux, Data Collection
+",2020-04-06,2017-02-09,2019-08-01,,5214619,12586791
+G16-DEMO-07,San Joaquin Valley Zero-Emission Cargo Handling Demonstration Project,San Joaquin Valley Air Pollution Control District,"Modesto, CA","DANNAR, Technology Provider;
+Chargepoint, Technology Provider;
+carbonBLU, data collection",2018-05-15,2018-03-30,2018-06-04,772555,403540,
+G14-LCTI-08,Port of Los Angeles Green Omni Terminal,Los Angeles Harbor Department,"Los Angeles, CA","Transpower, EV suppliers; BYD, EV suppliers; Ricardo, Data Validation; Pasha Stevedoring and Terminal, Fleet;",,2016-06-01,2016-06-01,,12092000,14510400
+G16-DEMO-03,Off-Road Advanced Technology Demonstration Project,City of Long Beach Harbor Department (Port of Long Beach),Port of Long Beach,"Port of Long Beach, Administrative; LBCT, Fleet; SSA Marine, Fleet; ILWU, Maintenance; Taylor, Technology Provider; BYD, Technology Provider; Kalmar, Technology Provider; TransPower/Meritor, Technology Provider; CNHTC/Sinotruk, Technology Provider; Loop Energy, Technology Provider; Green Education, Community Outreach; LBUSD, Curriulum Development; CITT, Curriulum Development; LBCC, Curriulum Development; Momentum, Grant Administration; Tetra Tech, Data Collection and Analysis; UC R, Emission Testing;",2017-11-17,2018-05-01,2018-05-01,0,2963550,5339820
+G16-ZBUS-01,Sacramento Regional Zero-Emission School Bus Delployment Project,Sacramento Metropolitan Air Quality Management District,"Orange County, CA; Alameada County, CA","CARB, Granter; CTE, Technical Advisor; AC Transit, Fleet; OCTA, Fleet; New Flyer, Bus Manufacturer; Ballard, Fuel Cell Provider; Messer, Fueling Infrastructure; Trillium, Hydrogen Station Management; Transworld Associates LLC, Bus and Fueling Station Supervisors; Air District, Match Funding Provider; AQMD, ",,2017-02-01,2017-02-01,0,23152357,22347502
+G16-ZTRK-03,The Green On-Road Linen Delivery Project,San Joaquin Valley APCD,"Fresno, CA","AmeriPride Linen Delivery Services, Fleet; SJVAPCD, Admin; Motiv, Powertrain Manufacturer; CALSTART, Data validation;",,,2017-03-01,,5818168,7125515
+G16-ZTRK-01,Goodwill Industries Electric Delivery Vehicle Project,Bay Area Air Quality Management District,"San Francisco, CA","CARB, Granter; Air District, Administrator; Goodwill, Fleet; BYD, EV Manufacturer; CTE, Engineering planning and Data Validation;",2017-02-15,2017-02-15,2017-02-15,0,1697362,2738557
+G17-ZNZE-10,"Zero-Emission Freight ""Shore to Shore"" Project",Port of Los Angeles,"Los Angeles, CA","Equilon Enterprises, Hydrogen infrastructure providers; Kenworth, ZEV Manufacturer; Toyota, Fuel Cell manufacturers; The Port of Hueneme, ; United Parcel Services, Fleet; TTSI, Fleet; Southern Counties Express, Fleet; Toyota Logistics Services, Fleet; National Renewable Energy Laboratory, Data collection and validation; Los Angeles Department of Power and Water, utilities; Air Provider, Hydrogen supplier;",2019-03-21,2019-03-21,2019-03-21,,41426612,41122260
