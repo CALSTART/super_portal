@@ -18,16 +18,17 @@ def hvip():
     data['VIN'] = data['VIN'].astype(str)
     data = data.astype({'VocationalUseOther': 'string'})
     data['Date Delivered'] = pd.to_datetime(data['Date Delivered'],errors='ignore')
-    print('dtypes', data.dtypes)
     #Add HFC in Fuel Type Column
     data.loc[data['EngineType'].str.contains('Hydrogen') == True, 'Fuel Type'] = 'HFC'
+    #drop all payment status na
+    data.dropna(subset=['PaymentDate'], inplace=True)
+
 
     #filter out HV from Fuel Type
     data = data[data['Fuel Type'] != 'HV']
     data = data[data['Fuel Type'] != 'EVSE']
     data = data[data['Fuel Type'] != 'ePTO']
     data = data[data['Fuel Type'] != 'Natural Gas']
-    print("Length After Removing Fuel Type: ", len(data))
     #standardize DAC? column
     data['DAC?'] = data['DAC?'].astype(str)
     data.loc[data['DAC?'] == 'True', 'DAC?'] = 'Yes'
@@ -39,7 +40,6 @@ def hvip():
     #remove bad VINs
     data = data[data['VIN'] != '0']
     data = data[data['VIN'].notnull()]
-    print("Length After Removing VIN: ", len(data))
 
     #Add Address
     data['Address'] = data['Address'].astype(str) + " " + data['FleetCity'].astype(str) + ", " + "CA " + data['FleetZipCode'].astype(str)
@@ -66,6 +66,8 @@ def hvip():
                 data.loc[index, 'Segment'] = 'Other'
             elif row['Segment'] in error_list:
                 data.loc[index, 'Segment'] = 'ERROR'
+            elif row['Segment'] == 'Coach':
+                data.loc[index, 'Segment'] = 'Shuttle bus'
             else:
                 continue
         else:
@@ -83,6 +85,8 @@ def hvip():
                 data.loc[index, 'Segment'] = 'Shuttle Bus'
             elif (row['Segment'] == 'Panel/ Step/ Cargo Van') and (row['Description'] in m_d_cargo_vans):
                 data.loc[index, 'Segment'] = 'Cargo Van'
+            elif row['Segment'] == 'Coach':
+                data.loc[index, 'Segment'] = 'Shuttle bus'
             else:
                 continue
     # string match for drayage and add to segment column
@@ -104,15 +108,21 @@ def vw_settlement():
     data.rename(columns={"NewVIN": "VIN", "NewVehicleType":"Segment", "NewFuel":"Fuel Type", "NewEquipmentMake":"Manufacturer", 'Executed': 'Date Delivered', "Equipment County":"County", "DAC":"DAC?", "TransactionAmt":"Funding Total", "Name1":"Entity", "NewGVWR":"GVWR"}, inplace=True)
     data['Source'] = 'VW Settlement'
     data['Air District'] = " "
-    data['Fuel Type'] = data['Fuel Type'].str.title()
+    #data['Fuel Type'] = data['Fuel Type'].str.title()
     data['Address'] = data['EquipmentAddress'].astype(str) + " " + data['Equipment City'].astype(str) + "," + " CA " + data['Equipment Zip'].astype(str)
+    #drop purchase completion date + drop null vins
+    data.dropna(subset=['VIN','PurchaseOrCompletionDate'], inplace=True)
+    #drop null vins
+    #data = data[data['VIN'].notnull()]
+
     #Standardize DAC Status
     data.loc[data['DAC?'] == 'None', 'DAC?'] = 'No'
     data.loc[data['DAC?'] == 'Low Income', 'DAC?'] = 'No'
     data.loc[data['DAC?'] == 'DAC & Low Income', 'DAC?'] = 'Yes'
     data.loc[data['DAC?'] == 'DAC', 'DAC?'] = 'Yes'
-    #drop null vins
-    data = data[data['VIN'].notnull()]
+    data['Fuel Type'] = data['Fuel Type'].str.replace('ELECTRIC', 'EV')
+    data['Fuel Type'] = data['Fuel Type'].str.replace('Zev', 'EV')
+
     #get county information
     vw_zips = data['Equipment Zip'].to_list()
     data = get_air_district_county(vw_zips, data)
@@ -133,12 +143,15 @@ def cap_moyer():
 
     #filter out HVIP co-funded buses
     data = data[data['HVIP co-funding'] != 'HVIP - Hybrid and Zero-Emission Truck and Bus Voucher Incentive Project']
+    #drop all non school buses
+    data = data[data['Segment'] == 'SB']
+    data.dropna(subset=['VIN'], inplace=True)
+
     data['County'] = ""
-    data['GVWR'] = 'NA'
+    data['GVWR'] = 'Not Available'
     data['DAC?'] = ""
     data['Address'] = ""
-    #data['Segment'] = "HD"
-    data['Fuel Type'] = "ZEV"
+    data['Fuel Type'] = "EV"
     data['Latitude'] = "To be added"
     data['Longitude'] = "To be added"
     #standardize gvwr
@@ -170,7 +183,7 @@ def ict():
     data['Longitude'] = ""
     ict_zips = data['Dispatch Location Zip Code'].to_list()
     ict_zips_int = [int(item) for item in ict_zips]
-    print("ICT Zip:", ict_zips[0])
+    #print("ICT Zip:", ict_zips[0])
     data = get_air_district_county(ict_zips_int, data)
     data['Air District'] = data['Air District'].str.title()
 
@@ -185,7 +198,7 @@ def rsbpp_buses():
     rsbpp_1.rename(columns={"Applicant": "Entity", "Delivery Date":"Date Delivered", "New Bus Manufacturer":"Manufacturer", "New Bus VIN":"VIN", "New Bus Fuel Type":"Fuel Type", "Allowable Costs $":"Funding Total", "Local Air District":"Air District", "New Bus GVWR":"GVWR"}, inplace=True)
     rsbpp_1 = rsbpp_1[rsbpp_1['VIN'] != '']
     rsbpp_1['Source'] = 'Rural School Bus Pilot Project'
-    rsbpp_1['Segment'] = 'School bus'
+    rsbpp_1['Segment'] = 'School Bus'
     rsbpp_1['Address'] = rsbpp_1['Physical Street'].astype(str) + " "+ rsbpp_1['Physical City'].astype(str) + ", " + "CA " + rsbpp_1['Physical Zip'].astype(str)
     rsbpp_1 = rsbpp_1[rsbpp_1['Fuel Type'] == 'Electric']
     rsbpp_1['County'] = ''
@@ -202,7 +215,7 @@ def rsbpp_buses():
     rsbpp_2['Fuel Type'] = "ZEV"
     rsbpp_2['Source'] = 'Rural School Bus Pilot Project'
     rsbpp_2['Address'] = rsbpp_2['Bus Storage Street'].astype(str) + " " + rsbpp_2['Bus Storage City'].astype(str) + ", " + "CA " + rsbpp_2['Bus Storage Zip'].astype(str)
-    rsbpp_2['Segment'] = 'School bus'
+    rsbpp_2['Segment'] = 'School Bus'
     rsbpp_2['County'] = ''
     rsbpp_2['Latitude'] = ''
     rsbpp_2['Longitude'] = ''
@@ -217,7 +230,7 @@ def rsbpp_buses():
 
     rsbpp_3['Fuel Type'] = "ZEV"
     rsbpp_3['Source'] = 'Rural School Bus Pilot Project'
-    rsbpp_3['Segment'] = 'School bus'
+    rsbpp_3['Segment'] = 'School Bus'
     rsbpp_3['County'] = ''
     rsbpp_3['Latitude'] = ''
     rsbpp_3['Longitude'] = ''
@@ -228,14 +241,19 @@ def rsbpp_buses():
 
     #rsbpp_3 = remove_ad_suffix(rsbpp_3)
     rsbpp_3= rsbpp_3[['Source', 'VIN','Entity','Date Delivered','Manufacturer','Segment', 'Fuel Type', 'GVWR', 'Funding Total', 'Air District', 'County', 'DAC?', 'Address', 'Latitude', 'Longitude']]
-
     data = pd.concat([rsbpp_1, rsbpp_2, rsbpp_3])
+
+
+    #change ELECTRIC to EV
+    data['Fuel Type'] = data['Fuel Type'].str.title()
+    data['Fuel Type'] = data['Fuel Type'].str.replace('Electric', 'EV')
+    data['Fuel Type'] = data['Fuel Type'].str.replace('Zev', 'EV')
+
     #standardize gvwr
     data = standardize_gvwr(data)
     #clean segment
     data = standardize_segment(data)
-    #remove suffix
-    #data = remove_ad_suffix(data)
+
 
     return data
 
@@ -244,8 +262,9 @@ def sacramento():
     sac_df = pd.read_csv('sacramento_bus.csv')
     sac_df.rename(columns={"Recipient School District": "Entity", "Year":"Date Delivered", "School Bus Manufacturer":"Manufacturer", "Grant amount total":"Funding Total", "Address/ Zip Code":"Address"}, inplace=True)
     sac_df['Source'] = 'Sacramento Regional ZE School Bus Deployment Project'
-    sac_df['Fuel Type'] = 'ZEV'
-    sac_df['Segment'] = 'School bus'
+    sac_df['Fuel Type'] = 'EV'
+    sac_df['Date Delivered'] = '1/1/' + sac_df['Date Delivered'].apply(str)
+    sac_df['Segment'] = 'School Bus'
     #sac_df['Address'] = sac_df['Physical Street'].astype(str) + " "+ rsbpp_1['Physical City'].astype(str) + ", " + "CA " + rsbpp_1['Physical Zip'].astype(str)
     #sac_df = rsbpp_1[rsbpp_1['Fuel Type'] == 'Electric']
     sac_df['Air District'] = 'Sacramento Metropolitan'
@@ -269,7 +288,7 @@ def cmis():
     data.rename(columns={"School fleet owner": "Entity", "New Bus Manufacturer":"Manufacturer","New Bus CHP Cert Date":"Date Delivered", "Total Project Funding":"Funding Total", "New Bus VIN":"VIN", "Local Air District":"Air District", "New Bus GVWR":"GVWR"}, inplace=True)
     data['Source'] = 'CMIS'
     data['Fuel Type'] = 'ZEV'
-    data['Segment'] = 'School bus'
+    data['Segment'] = 'School Bus'
     data['Address'] = data['Bus Storage Street'].astype(str) + " " + data['Bus Storage City'].astype(str) + ", " + "CA " + data['Bus Storage Zip'].astype(str)
     data['County'] = 'Sacramento'
     data['DAC?'] = 'Yes'
@@ -316,6 +335,7 @@ def prop1b():
     prop1b['DAC?'] = ''
     prop1b['Latitude'] = ''
     prop1b['Longitude'] = ''
+    prop1b['Date Delivered'] = '1/1/' + prop1b['Date Delivered'].apply(str)
     #get air district
     prop1b = get_air_district_county(list_of_zips, prop1b)
     #standardize gvwr
@@ -390,7 +410,7 @@ def standardize_segment(data):
     dict_of_segments = {"Truck - Medium Duty":"MD Truck", "Step Van":"MD Step Van", "Parcel Delivery":"MD Step Van",
     "Specialty Vehicle":"Other", "Utility Truck":"Other", "Delivery Truck":"MD Truck","Low-floor":"Transit Bus", "Coach Bus":"Coach",
     "Bus - Medium Duty":"Shuttle Bus", "Special Needs":"Shuttle Bus","School Bus C":"School Bus", "School Bus D":"School Bus",
-    "School Bus A":"School Bus", "HH":"HD Truck", "MH":"MD Truck", "SB":"School bus", "SW":"Other", "TV":"Transit bus", "UB":"Transit bus",
+    "School Bus A":"School Bus", "HH":"HD Truck", "MH":"MD Truck", "SB":"School bus", "SW":"Other", "TV":"Transit Bus", "UB":"Transit Bus",
      "MD":"MD Truck"}
     for j in all_segments:
         if j in dict_of_segments:
@@ -399,17 +419,11 @@ def standardize_segment(data):
         else:
             updated_segment_list.append(j)
     data['Segment'] = updated_segment_list
-    #print("Updated segments", updated_segment_list)
     return data
 
 def standardize_gvwr(data):
-    #gvwr_ranges = [10,001-14,000, 14001-19500, 19501-26000,26001-33000, '33001 and up']
-    #datatypes = data.dtypes['GVWR']
-    #data["GVWR"] = pd.to_numeric(data["GVWR"],downcast='integer')
-    # print(data['GVWR'])
-    # print("end of downcasted GVWR")
     for index, row in data.iterrows():
-        if row['GVWR'] == 'NA':
+        if row['GVWR'] == 'Not Available':
             continue
         elif (row['GVWR'] >= 10001) and (row['GVWR'] <= 14000):
             data.loc[index, 'GVWR'] = '14,001 - 19,500'
@@ -424,8 +438,8 @@ def standardize_gvwr(data):
         else:
             #data.loc[index, 'GVWR'] = ''
             continue
-    print(data['GVWR'])
-    print('End of GVWR')
+    #print(data['GVWR'])
+    #rint('End of GVWR')
 
     return data
 
@@ -446,7 +460,15 @@ if __name__ == "__main__":
     print("Length of Sac", len(sac_df))
     print("Length of CMIS", len(cmis_df))
     standardize_gvwr = pd.concat([sac_df, rsbpp_df, prop1b, cmis_df, cap_moyer_df, vw_data, hvip_data], ignore_index = True)
-    standardize_gvwr.to_csv('super_portal_data_v1.39.csv')
+    #re-categorize ZEV to EV
+    standardize_gvwr['Fuel Type'] = standardize_gvwr['Fuel Type'].str.replace('ZEV', 'EV')
+    standardize_gvwr['Fuel Type'] = standardize_gvwr['Fuel Type'].str.replace('Hfc', 'HFC')
+    print("Length of Dataset w/ Duplicates",  len(standardize_gvwr))
+    #dropping dups
+    final_df = standardize_gvwr.drop_duplicates(subset=['VIN'])
+    print("Length of Final Dataset",  len(final_df))
+
+    final_df.to_csv('super_portal_data_v1.42.csv')
 
     exit()
     # gvwr_num_dfs = pd.concat([vw_data, cap_moyer_df, cmis_df, prop1b, rsbpp_df], ignore_index = True)
@@ -464,4 +486,4 @@ if __name__ == "__main__":
     # print("Total Length", len(final_df))
 
     #generate output file
-    final_df.to_csv('super_portal_data_v1.40.csv')
+    #final_df.to_csv('super_portal_data_v1.40.csv')
